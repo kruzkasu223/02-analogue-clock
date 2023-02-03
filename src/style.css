@@ -3,10 +3,152 @@
   color-scheme: light dark;
   color: rgba(255, 255, 255, 0.87);
   background-color: #242424;
+
+  --width: 40rem;
 }
 
 * {
   box-sizing: border-box;
   margin: 0;
   padding: 0;
+}
+
+body {
+  width: 100%;
+}
+
+#app {
+  margin: 2rem 0 0 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-direction: column;
+  gap: 2rem;
+}
+
+.clock_container {
+  width: var(--width);
+  height: var(--width);
+}
+
+.clock {
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  border: 0.5rem solid transparent;
+  padding: 2rem;
+  position: relative;
+  box-shadow: 8px 8px 6px #1d1d1d, -8px -8px 6px #2b2b2b,
+    inset 8px 8px 6px #1d1d1d, inset -8px -8px 6px #2b2b2b;
+}
+
+.clock_face {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  border-radius: 100%;
+  background: #242424;
+  overflow: hidden;
+}
+
+.clock_face::after {
+  rotate: 90deg;
+}
+
+.clock_face::before,
+.clock_face::after,
+.clock_face .indicator {
+  content: "";
+  position: absolute;
+  width: 0.5rem;
+  height: 100%;
+  border-radius: 0.5rem;
+  box-shadow: 1px 1px 2px #151515, -1px -1px 2px #333333,
+    inset 1px 1px 2px #151515, inset -1px -1px 2px #333333;
+  z-index: 0;
+  left: 49%;
+}
+
+.clock_face .indicator {
+  background-color: transparent;
+  border-radius: 0.5rem;
+  box-shadow: inset 1px 1px 2px #151515, inset -1px -1px 2px #333333;
+}
+
+.clock_face .indicator.one {
+  rotate: 30deg;
+}
+
+.clock_face .indicator.two {
+  rotate: 60deg;
+}
+
+.clock_face .indicator.three {
+  rotate: 120deg;
+}
+
+.clock_face .indicator.four {
+  rotate: 150deg;
+}
+
+.clock_hands {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 80%;
+  height: 80%;
+  background: #242424;
+  border-radius: 100%;
+  z-index: 1;
+}
+
+.clock_hands::before {
+  content: "";
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  width: 1rem;
+  height: 1rem;
+  border-radius: 100%;
+  background: #333333;
+  z-index: 9999;
+}
+
+.hand {
+  width: 50%;
+  right: 50%;
+  height: 6px;
+  position: absolute;
+  top: 50%;
+  border-radius: 6px;
+  transform-origin: 100%;
+  rotate: 90deg;
+}
+
+.hand.second {
+  background-color: #ef4444;
+  width: 45%;
+  height: 2px;
+}
+
+.hand.second::after {
+  content: "";
+  position: absolute;
+  left: 100%;
+  width: 30%;
+  height: 2px;
+  background-color: #ef4444;
+}
+
+.hand.minute {
+  background-color: #1e40af;
+  height: 3px;
+  width: 40%;
+}
+
+.hand.hour {
+  background-color: #1e40af;
+  width: 30%;
 }
